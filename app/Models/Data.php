@@ -9,6 +9,11 @@ class Data extends Model
 {
     use HasFactory;
 
+    protected $table="datas";
+    protected $fillable =[
+        'user_id'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

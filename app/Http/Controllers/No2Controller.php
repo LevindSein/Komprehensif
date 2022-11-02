@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -77,6 +78,11 @@ class No2Controller extends Controller
             }
         }
         $data = implode(',', $data);
+        return response()->json(['success' => $data]);
+    }
+
+    public function relasi($val){
+        $data = Data::with('user')->find($val);
         return response()->json(['success' => $data]);
     }
 

@@ -78,10 +78,10 @@
         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 <div class="form-group" style="width:50%;">
-                    <label>Relasi</label>
-                    <button id="relasi-1" value="1"></button>
-                    <button id="relasi-2" value="2"></button>
-                    <span class="text-success" id="result-fungsi">Hasil akan muncul disini</span>
+                    <label>Relasi</label><br>
+                    <button value="1" class="relasi btn btn-sm btn-outline-primary">Show Relasi 1</button>
+                    <button value="2" class="relasi btn btn-sm btn-outline-primary">Show Relasi 2</button><br>
+                    <span class="text-success" id="result-relasi">Hasil akan muncul disini</span>
                 </div>
             </div>
             <div class="accordion-body">
@@ -241,6 +241,19 @@
             success:function(data)
             {
                 $("#result-prima").text("{" + data.success + "}");
+            }
+        });
+    });
+
+    $(document).on("click", ".relasi", function (e) {
+        $.ajax({
+            url: "/jawaban/no-2/relasi/" + $(this).attr('value'),
+            cache: false,
+            method: "GET",
+            dataType: "json",
+            success:function(data)
+            {
+                $("#result-relasi").text('Data ' + data.success.user_id + " : " + data.success.user.name + " " + data.success.user.jk);
             }
         });
     });

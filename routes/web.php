@@ -33,6 +33,7 @@ Route::prefix('jawaban')->group(function (){
     Route::get('no-2/biimplikasi/{a}/{b}', [No2Controller::class, 'biimplikasi']);
     Route::get('no-2/keanggotaan/{val}', [No2Controller::class, 'keanggotaan']);
     Route::get('no-2/prima/{val}', [No2Controller::class, 'prima']);
+    Route::get('no-2/relasi/{val}', [No2Controller::class, 'relasi']);
     Route::get('no-2/fungsi/{val}', [No2Controller::class, 'fungsi']);
 
     Route::get('no-3', [No3Controller::class, 'index']);
