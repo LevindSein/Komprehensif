@@ -26,5 +26,14 @@ Route::prefix('jawaban')->group(function (){
     Route::get('no-1/search', [No1Controller::class, 'search']);
 
     Route::get('no-2', [No2Controller::class, 'index']);
+    Route::get('no-2/ingkaran/{val}', [No2Controller::class, 'ingkaran']);
+    Route::get('no-2/konjungsi/{a}/{b}', [No2Controller::class, 'konjungsi']);
+    Route::get('no-2/disjungsi/{a}/{b}', [No2Controller::class, 'disjungsi']);
+    Route::get('no-2/implikasi/{a}/{b}', [No2Controller::class, 'implikasi']);
+    Route::get('no-2/biimplikasi/{a}/{b}', [No2Controller::class, 'biimplikasi']);
+    Route::get('no-2/keanggotaan/{val}', [No2Controller::class, 'keanggotaan']);
+    Route::get('no-2/prima/{val}', [No2Controller::class, 'prima']);
+    Route::get('no-2/fungsi/{val}', [No2Controller::class, 'fungsi']);
+
     Route::get('no-3', [No3Controller::class, 'index']);
 });

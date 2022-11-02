@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-sm btn-success search"><i class="fas fa-fw fa-sm fa-search"></i> Cari</button>
-            <button class="btn btn-sm btn-danger search"><i class="fas fa-fw fa-sm fa-times"></i> Hapus</button>
+            {{-- <button class="btn btn-sm btn-danger search"><i class="fas fa-fw fa-sm fa-times"></i> Hapus</button> --}}
         </div>
     </form>
 </div>
