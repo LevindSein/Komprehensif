@@ -79,6 +79,38 @@
             <div class="accordion-body">
                 <div class="form-group" style="width:50%;">
                     <label>Relasi</label><br>
+                    <table class="table" style="width:20%">
+                        <thead>
+                            <tr>
+                                <th>user_id</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($dataTable as $d)
+                            <tr>
+                                <th>{{$d->user_id}}</th>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <table class="table" style="width:40%">
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>nama</th>
+                                <th>kelamin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($userTable as $d)
+                            <tr>
+                                <th>{{$d->id}}</th>
+                                <th>{{$d->name}}</th>
+                                <th>{{$d->jk}}</th>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                     <button value="1" class="relasi btn btn-sm btn-outline-primary">Show Relasi 1</button>
                     <button value="2" class="relasi btn btn-sm btn-outline-primary">Show Relasi 2</button><br>
                     <span class="text-success" id="result-relasi">Hasil akan muncul disini</span>
@@ -101,12 +133,11 @@
         </h2>
         <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                <form id="form-1" style="width:100%">
-                    <div class="form-group">
-                        <input required name="jumlah" class="form-control form-control-sm number jumlah" maxlength="2" placeholder="Masukkan Jumlah Kelompok Belajar (1 - 40)" />
-                    </div>
-                    <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-fw fa-sm fa-paper-plane"></i> Buat</button>
-                </form>
+                <div class="form-group" style="width:50%;">
+                    <label>Pecahan Uang yang Dibutuhkan</label>
+                    <input required name="induksi" id="induksi" class="form-control number" maxlength="10" placeholder="(Masukkan nominal uang)" />
+                    <span class="text-success" id="result-induksi">Hasil akan muncul disini</span>
+                </div>
             </div>
         </div>
     </div>
@@ -118,12 +149,9 @@
         </h2>
         <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                <form id="form-1" style="width:100%">
-                    <div class="form-group">
-                        <input required name="jumlah" class="form-control form-control-sm number jumlah" maxlength="2" placeholder="Masukkan Jumlah Kelompok Belajar (1 - 40)" />
-                    </div>
-                    <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-fw fa-sm fa-paper-plane"></i> Buat</button>
-                </form>
+                <div class="form-group">
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
             </div>
         </div>
     </div>
@@ -135,12 +163,10 @@
         </h2>
         <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-                <form id="form-1" style="width:100%">
-                    <div class="form-group">
-                        <input required name="jumlah" class="form-control form-control-sm number jumlah" maxlength="2" placeholder="Masukkan Jumlah Kelompok Belajar (1 - 40)" />
-                    </div>
-                    <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-fw fa-sm fa-paper-plane"></i> Buat</button>
-                </form>
+                <div class="form-group">
+                    <button class="pohon btn btn-sm btn-outline-primary">Show Tree</button><br>
+                    <span class="text-success" id="result-pohon">Hasil akan muncul disini</span>
+                </div>
             </div>
         </div>
     </div>
@@ -267,6 +293,76 @@
             success:function(data)
             {
                 $("#result-fungsi").text(data.success);
+            }
+        });
+    });
+
+    $(document).on("change", "#induksi", function (e) {
+        var numb = Number($(this).val().replace(/\./g,''));
+        if (numb % 100 != 0)
+            $(this).val($(this).val().replace($(this).val(), (numb - (numb % 100)).toLocaleString('id-ID')));
+
+        $.ajax({
+            url: "/jawaban/no-2/induksi/" + $("#induksi").val(),
+            cache: false,
+            method: "GET",
+            dataType: "json",
+            success:function(data)
+            {
+                $("#result-induksi").html(data.success);
+            }
+        });
+    });
+
+    const ctx = document.getElementById('myChart');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    $(document).on("click", ".pohon", function (e) {
+        var numb = Number($(this).val().replace(/\./g,''));
+        if (numb % 100 != 0)
+            $(this).val($(this).val().replace($(this).val(), (numb - (numb % 100)).toLocaleString('id-ID')));
+
+        $.ajax({
+            url: "/jawaban/no-2/pohon",
+            cache: false,
+            method: "GET",
+            dataType: "json",
+            success:function(data)
+            {
+                $("#result-pohon").html("Original Data : " + data.success[0] + "<br><br>" + "Sorted by HeapSort / Tree Method : " + data.success[1]);
             }
         });
     });
