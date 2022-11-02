@@ -19,7 +19,7 @@
         <a type="button" href="{{url('jawaban/no-2')}}" class="btn btn-sm btn-outline-success">Jawaban No.2 (Done)</a>
     </div>&nbsp;&nbsp;
     <div class="form-group">
-        <a type="button" href="{{url('jawaban/no-3')}}" class="btn btn-sm btn-outline-danger disabled">Jawaban No.3</a>
+        <a type="button" href="{{url('jawaban/no-3')}}" class="btn btn-sm btn-outline-danger">Jawaban No.3 (Done)</a>
     </div>
 </div>
 @endsection
