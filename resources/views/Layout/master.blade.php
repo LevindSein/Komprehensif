@@ -40,6 +40,11 @@
             .form-group{
                 margin-bottom: 25px;
             }
+
+            a.disabled {
+                pointer-events: none;
+                cursor: default;
+            }
         </style>
 
         {{-- Font Awesome --}}

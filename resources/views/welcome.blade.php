@@ -13,13 +13,13 @@
 <label>Pilih Jawaban :</label>
 <div class="d-flex justify-content-center text-center">
     <div class="form-group">
-        <a type="button" href="{{url('jawaban/no-1')}}" class="btn btn-sm btn-outline-primary">Jawaban No.1</a>
+        <a type="button" href="{{url('jawaban/no-1')}}" class="btn btn-sm btn-outline-primary">Jawaban No.1 (Done)</a>
     </div>&nbsp;&nbsp;
     <div class="form-group">
-        <a type="button" href="{{url('jawaban/no-2')}}" class="btn btn-sm btn-outline-success">Jawaban No.2</a>
+        <a type="button" href="{{url('jawaban/no-2')}}" class="btn btn-sm btn-outline-success disabled">Jawaban No.2</a>
     </div>&nbsp;&nbsp;
     <div class="form-group">
-        <a type="button" href="{{url('jawaban/no-3')}}" class="btn btn-sm btn-outline-danger">Jawaban No.3</a>
+        <a type="button" href="{{url('jawaban/no-3')}}" class="btn btn-sm btn-outline-danger disabled">Jawaban No.3</a>
     </div>
 </div>
 @endsection
